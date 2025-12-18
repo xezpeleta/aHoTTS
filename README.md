@@ -28,6 +28,29 @@ You will need to install huggingface_hub package with the following command.
 ```bash
 pip install huggingface_hub
 ```  
+
+### Using Docker  
+You can also run the synthesizer inside a Docker container, without installing Python dependencies locally.  
+
+**Build the image:**  
+```bash
+cd aHoTTS
+docker build -t ahotts .
+```  
+
+**Run a synthesis:**  
+The container entrypoint is `python synthesize.py`, so you only need to pass the usual arguments:  
+```bash
+docker run --rm \
+  -v "$(pwd)/output:/app/output" \
+  ahotts \
+  -t "Antton naiz, zer moduz zaude." \
+  -l eu \
+  -m antton \
+  -o audio_name
+```  
+
+The synthesized audio will be available in the `output/` directory on your host machine.  
 ## How to use
 ### Python
 Use the synthesize.py script to generate speech. All available models are listed in the sections above. Before running the script, navigate to the repository directory:  
